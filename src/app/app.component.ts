@@ -14,9 +14,9 @@ export class AppComponent {
   @HostListener("window:scroll", ['$event'])
   onScroll(): void{
     if((window.innerHeight + window.scrollY)>= document.body.offsetHeight){
-
+      this.flag = true;
       setTimeout(()=>{
-        this.flag = true;
+        this.flag = false;
         this.elements = [...this.elements, this.count++];
         
       },1000);
