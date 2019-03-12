@@ -8,22 +8,20 @@ import { Component, HostListener } from '@angular/core';
 export class AppComponent {
   title = 'secondProject';
   public elements = Array(25);
-  count = 1;
+  count :number= 1;
   flag: boolean=false;
 
-  @HostListener("window:scroll", [])
+  @HostListener("window:scroll", ['$event'])
   onScroll(): void{
-    if(this.bottomReached()){
-      setTimeout(function(){
+    if((window.innerHeight + window.scrollY)>= document.body.offsetHeight){
+
+      setTimeout(()=>{
         this.flag = true;
-      },10000);
-      this.elements = [...this.elements, this.count++];
-      //this.flag= false;
+        this.elements = [...this.elements, this.count++];
+        
+      },1000);
+      
       console.log(this.count);
     }
-  }
-
-  bottomReached(): boolean{
-    return (window.innerHeight + window.scrollY)>= document.body.offsetHeight;
   }
 }
